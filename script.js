@@ -1,8 +1,71 @@
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Contact Modal Elements
+    const contactModal = document.getElementById('contactModal');
+    const openModalButtons = document.querySelectorAll('.open-contact-modal');
+    const closeModalButton = document.querySelector('.modal-close');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    
     // Back to Top Button
     const backToTop = document.querySelector('.back-to-top');
     
+    // Open Modal Function
+    function openContactModal() {
+        contactModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        console.log('Contact modal opened');
+    }
+    
+    // Close Modal Function
+    function closeContactModal() {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = ''; // Re-enable scrolling
+        console.log('Contact modal closed');
+    }
+    
+    // Add click events to all "Send Message" and "Hire Me" buttons
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', openContactModal);
+    });
+    
+    // Close modal on close button click
+    closeModalButton.addEventListener('click', closeContactModal);
+    
+    // Close modal on overlay click
+    modalOverlay.addEventListener('click', closeContactModal);
+    
+    // Close modal on Escape key press
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+            closeContactModal();
+        }
+    });
+    
+    // Track which contact option is chosen
+    document.querySelectorAll('.contact-option').forEach(option => {
+        option.addEventListener('click', function(e) {
+            const platform = this.classList.contains('linkedin-option') ? 'LinkedIn' :
+                            this.classList.contains('whatsapp-option') ? 'WhatsApp' :
+                            this.classList.contains('email-option') ? 'Email' : 'Contact';
+            
+            console.log(`Contact option chosen: ${platform}`);
+            
+            // Optional: Add Google Analytics tracking here
+            // if (typeof gtag !== 'undefined') {
+            //     gtag('event', 'contact_option', {
+            //         'event_category': 'Contact',
+            //         'event_label': platform
+            //     });
+            // }
+            
+            // Close modal after a short delay (allowing link to open)
+            setTimeout(() => {
+                closeContactModal();
+            }, 300);
+        });
+    });
+    
+    // Back to Top Button Functionality
     window.addEventListener('scroll', function() {
         if (window.scrollY > 300) {
             backToTop.classList.add('visible');
@@ -72,14 +135,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.transform = '';
             }, 200);
             
-            // Scroll to contact section
-            const contactSection = document.querySelector('#contact');
-            if (contactSection) {
-                window.scrollTo({
-                    top: contactSection.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-            }
+            // Open contact modal when Hire Me is clicked
+            openContactModal();
         });
     }
     
@@ -210,6 +267,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('.btn');
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
+            // Don't create ripple for modal open buttons
+            if (this.classList.contains('open-contact-modal')) return;
+            
             const ripple = document.createElement('span');
             const rect = this.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
@@ -236,7 +296,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add CSS for ripple animation
+    // Track social link clicks
+    document.querySelectorAll('.social-icon').forEach(icon => {
+        icon.addEventListener('click', function(e) {
+            const platform = this.classList.contains('linkedin') ? 'LinkedIn' :
+                            this.classList.contains('github') ? 'GitHub' :
+                            this.classList.contains('instagram') ? 'Instagram' :
+                            this.classList.contains('whatsapp') ? 'WhatsApp' :
+                            this.classList.contains('email') ? 'Email' :
+                            this.classList.contains('phone') ? 'Phone' : 'Social';
+            
+            console.log(`Social link clicked: ${platform} - ${this.href}`);
+        });
+    });
+    
+    // Also track contact card clicks
+    document.querySelectorAll('.contact-value').forEach(link => {
+        link.addEventListener('click', function() {
+            console.log(`Contact link clicked: ${this.textContent}`);
+        });
+    });
+    
+    // Add CSS for animations
     const style = document.createElement('style');
     style.textContent = `
         @keyframes ripple {
@@ -244,6 +325,73 @@ document.addEventListener('DOMContentLoaded', function() {
                 transform: scale(4);
                 opacity: 0;
             }
+        }
+        
+        .social-icon {
+            position: relative;
+            overflow: visible !important;
+        }
+        
+        .social-icon::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            pointer-events: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-icon:hover::after {
+            opacity: 1;
+            visibility: visible;
+            bottom: -35px;
+        }
+        
+        /* Animation for cards */
+        .skill-category-card.animate-in,
+        .expertise-card.animate-in,
+        .stat-card.animate-in {
+            animation: slideUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Modal animations */
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        /* Prevent scrolling when modal is open */
+        body.modal-open {
+            overflow: hidden;
         }
     `;
     document.head.appendChild(style);
