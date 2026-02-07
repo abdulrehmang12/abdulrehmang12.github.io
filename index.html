@@ -31,7 +31,7 @@
                 <a href="#expertise" class="nav-link"><i class="fas fa-tools"></i> Expertise</a>
                 <a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
             </div>
-            <button class="hire-btn">Hire Me <i class="fas fa-arrow-right"></i></button>
+            <button class="hire-btn open-contact-modal">Hire Me <i class="fas fa-arrow-right"></i></button>
         </div>
     </nav>
 
@@ -62,10 +62,10 @@
                             View My Projects
                             <span class="btn-shine"></span>
                         </a>
-                        <a href="#contact" class="btn btn-outline">
+                        <button class="btn btn-outline open-contact-modal">
                             <i class="fas fa-paper-plane"></i>
                             Contact Me
-                        </a>
+                        </button>
                     </div>
                     
                     <div class="contact-cards">
@@ -95,7 +95,7 @@
                             </div>
                             <div>
                                 <div class="contact-label">LinkedIn</div>
-                                <a href="https://linkedin.com/in/abdulrehman12" target="_blank" class="contact-value">/in/abdulrehman12</a>
+                                <a href="https://linkedin.com/in/abdulrehmang12" target="_blank" class="contact-value">/in/abdulrehmang12</a>
                             </div>
                         </div>
                     </div>
@@ -426,9 +426,9 @@
                     <p>I'm open to opportunities, collaborations, and freelance projects. Let's connect and create value.</p>
                 </div>
                 <div class="cta-actions">
-                    <a href="mailto:mano555m10@gmail.com" class="btn btn-primary btn-large">
-                        <i class="fas fa-envelope"></i> Send Message
-                    </a>
+                    <button class="btn btn-primary btn-large open-contact-modal">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
                     <a href="tel:+923338412589" class="btn btn-outline btn-large">
                         <i class="fas fa-phone-alt"></i> Call Now
                     </a>
@@ -463,17 +463,58 @@
                     <div class="contact-info">
                         <p><i class="fas fa-phone"></i> +92 333 8412589</p>
                         <p><i class="fas fa-envelope"></i> mano555m10@gmail.com</p>
-                        <p><i class="fab fa-linkedin"></i> /in/abdulrehman12</p>
+                        <p><i class="fab fa-linkedin"></i> /in/abdulrehmang12</p>
                     </div>
                 </div>
                 
                 <div class="footer-social">
                     <h4>Connect With Me</h4>
                     <div class="social-icons">
-                        <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <!-- LinkedIn -->
+                        <a href="https://linkedin.com/in/abdulrehmang12" 
+                           target="_blank" 
+                           class="social-icon linkedin"
+                           title="Visit my LinkedIn profile">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        
+                        <!-- GitHub -->
+                        <a href="https://github.com/abdulrehmang12" 
+                           target="_blank" 
+                           class="social-icon github"
+                           title="Check my GitHub projects">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/abdulrehmang12" 
+                           target="_blank" 
+                           class="social-icon instagram"
+                           title="Follow me on Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/923338412589?text=Hi%20Abdul,%20I%20saw%20your%20portfolio" 
+                           target="_blank" 
+                           class="social-icon whatsapp"
+                           title="Message me on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        
+                        <!-- Email -->
+                        <a href="mailto:mano555m10@gmail.com?subject=Portfolio%20Inquiry" 
+                           class="social-icon email"
+                           title="Send me an email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        
+                        <!-- Phone -->
+                        <a href="tel:+923338412589" 
+                           class="social-icon phone"
+                           title="Call me">
+                            <i class="fas fa-phone"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -483,6 +524,70 @@
             </div>
         </div>
     </footer>
+
+    <!-- Contact Options Modal -->
+    <div class="contact-modal" id="contactModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content glass-card">
+            <button class="modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-header">
+                <h3>Choose Contact Method</h3>
+                <p>Select how you'd like to get in touch with me</p>
+            </div>
+            
+            <div class="contact-options">
+                <!-- LinkedIn Option -->
+                <a href="https://linkedin.com/in/abdulrehmang12" 
+                   target="_blank" 
+                   class="contact-option linkedin-option">
+                    <div class="option-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="option-content">
+                        <h4>Connect on LinkedIn</h4>
+                        <p>Send a professional message or connection request</p>
+                        <span class="option-cta">Open LinkedIn <i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- WhatsApp Option -->
+                <a href="https://wa.me/923338412589?text=Hi%20Abdul,%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect%20with%20you." 
+                   target="_blank" 
+                   class="contact-option whatsapp-option">
+                    <div class="option-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="option-content">
+                        <h4>Message on WhatsApp</h4>
+                        <p>Start a direct conversation for quick response</p>
+                        <span class="option-cta">Open WhatsApp <i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+                
+                <!-- Email Option -->
+                <a href="mailto:mano555m10@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Abdul,%0A%0AI%20saw%20your%20portfolio%20and%20wanted%20to%20connect%20with%20you.%0A%0ABest%20regards," 
+                   class="contact-option email-option">
+                    <div class="option-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="option-content">
+                        <h4>Send an Email</h4>
+                        <p>Send a detailed message via email</p>
+                        <span class="option-cta">Open Email <i class="fas fa-external-link-alt"></i></span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="modal-footer">
+                <p class="modal-note">
+                    <i class="fas fa-clock"></i> I typically respond within 24 hours
+                </p>
+            </div>
+        </div>
+    </div>
 
     <!-- Back to Top -->
     <button class="back-to-top">
