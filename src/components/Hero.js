@@ -153,22 +153,6 @@ export default function Hero() {
           ))}
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute animate-bounce" style={{ bottom: '40px', left: '50%', transform: 'translateX(-50%)' }}>
-        <div style={{
-          width: '24px', height: '40px',
-          border: '2px solid rgba(245, 158, 11, 0.3)',
-          borderRadius: '9999px',
-          display: 'flex', justifyContent: 'center', paddingTop: '8px',
-        }}>
-          <div className="animate-pulse" style={{
-            width: '4px', height: '12px',
-            backgroundColor: '#f59e0b',
-            borderRadius: '9999px',
-          }}></div>
-        </div>
-      </div>
     </section>
   );
 }
