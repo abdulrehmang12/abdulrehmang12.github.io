@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
 const contactInfo = [
   { icon: '📧', label: 'Email', value: 'mano555m10@gmail.com', href: 'mailto:mano555m10@gmail.com' },
@@ -23,8 +24,7 @@ const inputStyle = {
 
 export default function Contact() {
   const sectionRef = useRef(null);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [state, handleSubmit] = useForm("mdalbaqz");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -39,14 +39,6 @@ export default function Contact() {
     elements?.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const mailtoLink = `mailto:mano555m10@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${formData.name} (${formData.email})`;
-    window.open(mailtoLink);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-  };
 
   return (
     <section id="contact" style={{ padding: '120px 24px', backgroundColor: '#080808', position: 'relative' }} ref={sectionRef}>
@@ -122,52 +114,71 @@ export default function Contact() {
               <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#ffffff', marginBottom: '24px' }}>
                 Send me a message ✉️
               </h4>
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ color: '#9ca3af', fontSize: '0.8rem', marginBottom: '8px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Your Name</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  style={inputStyle}
-                  placeholder="John Doe"
-                  onFocus={(e) => { e.target.style.borderColor = 'rgba(245, 158, 11, 0.5)'; e.target.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.08)'; }}
-                  onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.boxShadow = 'none'; }}
-                />
-              </div>
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ color: '#9ca3af', fontSize: '0.8rem', marginBottom: '8px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Your Email</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  style={inputStyle}
-                  placeholder="john@example.com"
-                  onFocus={(e) => { e.target.style.borderColor = 'rgba(245, 158, 11, 0.5)'; e.target.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.08)'; }}
-                  onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.boxShadow = 'none'; }}
-                />
-              </div>
-              <div style={{ marginBottom: '24px' }}>
-                <label style={{ color: '#9ca3af', fontSize: '0.8rem', marginBottom: '8px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Message</label>
-                <textarea
-                  required
-                  rows={5}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  style={{ ...inputStyle, resize: 'none' }}
-                  placeholder="Tell me about your project..."
-                  onFocus={(e) => { e.target.style.borderColor = 'rgba(245, 158, 11, 0.5)'; e.target.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.08)'; }}
-                  onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.boxShadow = 'none'; }}
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn-primary"
-                style={{ width: '100%', border: 'none', cursor: 'pointer', fontSize: '1rem', textAlign: 'center' }}
-              >
-                {submitted ? '✅ Message Sent!' : '🚀 Send Message'}
-              </button>
+
+              {state.succeeded ? (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '40px 20px',
+                }}>
+                  <p style={{ fontSize: '3rem', marginBottom: '16px' }}>✅</p>
+                  <h3 style={{ color: '#f59e0b', fontSize: '1.3rem', fontWeight: '600', marginBottom: '8px' }}>
+                    Message Sent!
+                  </h3>
+                  <p style={{ color: '#9ca3af', fontSize: '0.95rem' }}>
+                    Thanks for reaching out! I&apos;ll get back to you soon.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <div style={{ marginBottom: '20px' }}>
+                    <label style={{ color: '#9ca3af', fontSize: '0.8rem', marginBottom: '8px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Your Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      style={inputStyle}
+                      placeholder="John Doe"
+                      onFocus={(e) => { e.target.style.borderColor = 'rgba(245, 158, 11, 0.5)'; e.target.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.08)'; }}
+                      onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.boxShadow = 'none'; }}
+                    />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} />
+                  </div>
+                  <div style={{ marginBottom: '20px' }}>
+                    <label style={{ color: '#9ca3af', fontSize: '0.8rem', marginBottom: '8px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Your Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      style={inputStyle}
+                      placeholder="john@example.com"
+                      onFocus={(e) => { e.target.style.borderColor = 'rgba(245, 158, 11, 0.5)'; e.target.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.08)'; }}
+                      onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.boxShadow = 'none'; }}
+                    />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
+                  </div>
+                  <div style={{ marginBottom: '24px' }}>
+                    <label style={{ color: '#9ca3af', fontSize: '0.8rem', marginBottom: '8px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Message</label>
+                    <textarea
+                      name="message"
+                      required
+                      rows={5}
+                      style={{ ...inputStyle, resize: 'none' }}
+                      placeholder="Tell me about your project..."
+                      onFocus={(e) => { e.target.style.borderColor = 'rgba(245, 158, 11, 0.5)'; e.target.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.08)'; }}
+                      onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.boxShadow = 'none'; }}
+                    />
+                    <ValidationError prefix="Message" field="message" errors={state.errors} />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={state.submitting}
+                    className="btn-primary"
+                    style={{ width: '100%', border: 'none', cursor: 'pointer', fontSize: '1rem', textAlign: 'center', opacity: state.submitting ? 0.7 : 1 }}
+                  >
+                    {state.submitting ? '⏳ Sending...' : '🚀 Send Message'}
+                  </button>
+                </>
+              )}
             </form>
           </div>
         </div>
