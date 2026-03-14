@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useState, useRef } from 'react';
 
 const projects = [
   {
@@ -130,7 +130,6 @@ function VideoPlayer({ src, gradient }) {
           alignItems: 'center',
           justifyContent: 'center',
           background: isPlaying ? 'transparent' : 'rgba(0, 0, 0, 0.5)',
-          transition: 'all 0.4s ease',
           opacity: isPlaying ? 0 : 1,
         }}
         onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
@@ -148,7 +147,6 @@ function VideoPlayer({ src, gradient }) {
             alignItems: 'center',
             justifyContent: 'center',
             boxShadow: '0 8px 32px rgba(245, 158, 11, 0.3)',
-            transition: 'transform 0.3s ease',
           }}
         >
           {isPlaying ? (
@@ -189,24 +187,9 @@ function VideoPlayer({ src, gradient }) {
 }
 
 export default function Projects() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const elements = sectionRef.current?.querySelectorAll('.fade-in, .scale-in');
-    elements?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section id="projects" style={{ padding: '120px 24px', backgroundColor: '#080808', position: 'relative' }} ref={sectionRef}>
+    <section id="projects" style={{ padding: '120px 24px', backgroundColor: '#080808', position: 'relative' }}>
       <div className="absolute" style={{ top: '30%', right: '-5%', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(245,158,11,0.04) 0%, transparent 70%)', borderRadius: '50%' }}></div>
 
       <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
@@ -231,17 +214,6 @@ export default function Projects() {
                 border: '1px solid rgba(255,255,255,0.05)',
                 borderRadius: '20px',
                 overflow: 'hidden',
-                transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-8px)';
-                e.currentTarget.style.borderColor = 'rgba(245, 158, 11, 0.3)';
-                e.currentTarget.style.boxShadow = '0 20px 50px rgba(245, 158, 11, 0.1)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)';
-                e.currentTarget.style.boxShadow = 'none';
               }}
             >
               {/* Gradient header - only show if no video */}

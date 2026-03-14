@@ -45,14 +45,10 @@ export default function Navbar() {
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(255,255,255,0.05)' : '1px solid transparent',
-        transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
       }}
     >
       <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <a href="#" style={{ textDecoration: 'none', fontSize: '1.6rem', fontWeight: '800', transition: 'transform 0.3s ease' }}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
-          onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-        >
+        <a href="#" style={{ textDecoration: 'none', fontSize: '1.6rem', fontWeight: '800' }}>
           <span style={{ color: '#f59e0b' }}>A</span>
           <span style={{ color: '#fde68a' }}>R</span>
           <span style={{ color: '#f59e0b' }}>.</span>
@@ -74,17 +70,7 @@ export default function Navbar() {
                 padding: '8px 16px',
                 borderRadius: '9999px',
                 background: active === link.href.replace('#', '') ? 'rgba(245, 158, 11, 0.1)' : 'transparent',
-                transition: 'all 0.3s ease',
                 letterSpacing: '0.02em',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.color = '#f59e0b';
-                e.target.style.background = 'rgba(245, 158, 11, 0.08)';
-              }}
-              onMouseLeave={(e) => {
-                const isActive = active === link.href.replace('#', '');
-                e.target.style.color = isActive ? '#f59e0b' : '#9ca3af';
-                e.target.style.background = isActive ? 'rgba(245, 158, 11, 0.1)' : 'transparent';
               }}
             >
               {link.label}
@@ -106,9 +92,9 @@ export default function Navbar() {
             padding: '8px',
           }}
         >
-          <span style={{ display: 'block', width: '24px', height: '2px', background: '#f59e0b', borderRadius: '2px', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none' }}></span>
-          <span style={{ display: 'block', width: '24px', height: '2px', background: '#f59e0b', borderRadius: '2px', transition: 'all 0.3s ease', opacity: menuOpen ? 0 : 1 }}></span>
-          <span style={{ display: 'block', width: '24px', height: '2px', background: '#f59e0b', borderRadius: '2px', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }}></span>
+          <span style={{ display: 'block', width: '24px', height: '2px', background: '#f59e0b', borderRadius: '2px', transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none' }}></span>
+          <span style={{ display: 'block', width: '24px', height: '2px', background: '#f59e0b', borderRadius: '2px', opacity: menuOpen ? 0 : 1 }}></span>
+          <span style={{ display: 'block', width: '24px', height: '2px', background: '#f59e0b', borderRadius: '2px', transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }}></span>
         </button>
       </div>
 
@@ -124,7 +110,6 @@ export default function Navbar() {
           display: 'flex',
           flexDirection: 'column',
           gap: '8px',
-          animation: 'fadeInDown 0.3s ease',
         }}>
           {navLinks.map((link) => (
             <a
@@ -138,7 +123,6 @@ export default function Navbar() {
                 padding: '12px 16px',
                 borderRadius: '12px',
                 background: active === link.href.replace('#', '') ? 'rgba(245, 158, 11, 0.1)' : 'transparent',
-                transition: 'all 0.3s ease',
               }}
             >
               {link.label}

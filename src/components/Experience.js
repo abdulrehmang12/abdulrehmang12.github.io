@@ -1,5 +1,4 @@
 'use client';
-import { useEffect, useRef } from 'react';
 
 const experienceSections = [
   {
@@ -40,24 +39,9 @@ const experienceSections = [
 ];
 
 export default function Experience() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const elements = sectionRef.current?.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
-    elements?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section id="experience" style={{ padding: '120px 24px', position: 'relative' }} ref={sectionRef}>
+    <section id="experience" style={{ padding: '120px 24px', position: 'relative' }}>
       <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
         <div className="fade-in" style={{ textAlign: 'center', marginBottom: '80px' }}>
           <p style={{ color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.3em', fontSize: '0.8rem', marginBottom: '12px', fontWeight: '500' }}>
@@ -77,7 +61,7 @@ export default function Experience() {
             </h3>
             <p style={{ color: '#9ca3af' }}>Self-Employed | Remote / Rawalpindi, Pakistan</p>
           </div>
-          <div className="gold-badge" style={{ animation: 'pulseGlow 3s infinite' }}>
+          <div className="gold-badge">
             🟢 2020 – Present
           </div>
         </div>
