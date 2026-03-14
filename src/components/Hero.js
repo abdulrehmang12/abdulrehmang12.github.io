@@ -52,7 +52,6 @@ export default function Hero() {
           width: '400px', height: '400px',
           background: 'radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%)',
           borderRadius: '50%',
-          animation: 'ambientMove 8s ease-in-out infinite',
         }}
       ></div>
       <div
@@ -62,7 +61,6 @@ export default function Hero() {
           width: '350px', height: '350px',
           background: 'radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%)',
           borderRadius: '50%',
-          animation: 'ambientMove 10s ease-in-out infinite reverse',
         }}
       ></div>
       <div
@@ -72,7 +70,6 @@ export default function Hero() {
           width: '250px', height: '250px',
           background: 'radial-gradient(circle, rgba(251, 191, 36, 0.06) 0%, transparent 70%)',
           borderRadius: '50%',
-          animation: 'ambientMove 12s ease-in-out infinite 2s',
         }}
       ></div>
 
@@ -111,7 +108,7 @@ export default function Hero() {
         <div style={{ height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px' }}>
           <h2 style={{ fontSize: 'clamp(1.1rem, 3vw, 1.6rem)', fontWeight: '300', color: '#9ca3af' }}>
             {text}
-            <span style={{ color: '#f59e0b', animation: 'blink 1s infinite', marginLeft: '2px' }}>|</span>
+            <span style={{ color: '#f59e0b', marginLeft: '2px' }}>|</span>
           </h2>
         </div>
 
@@ -137,15 +134,6 @@ export default function Hero() {
                 border: '1px solid rgba(255,255,255,0.06)',
                 borderRadius: '9999px',
                 background: 'rgba(255,255,255,0.02)',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.borderColor = 'rgba(245, 158, 11, 0.3)';
-                e.target.style.color = '#f59e0b';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.borderColor = 'rgba(255,255,255,0.06)';
-                e.target.style.color = '#6b7280';
               }}
             >
               {tech}

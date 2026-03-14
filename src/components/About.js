@@ -1,5 +1,4 @@
 'use client';
-import { useEffect, useRef } from 'react';
 
 const stats = [
   { number: '4+', label: 'Years Experience', icon: '🚀' },
@@ -15,24 +14,9 @@ const highlights = [
 ];
 
 export default function About() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.15 }
-    );
-    const elements = sectionRef.current?.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in, .stagger-children');
-    elements?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section id="about" style={{ padding: '120px 24px', position: 'relative' }} ref={sectionRef}>
+    <section id="about" style={{ padding: '120px 24px', position: 'relative' }}>
       {/* Subtle bg accent */}
       <div className="absolute" style={{ top: '20%', right: '-5%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(245,158,11,0.04) 0%, transparent 70%)', borderRadius: '50%' }}></div>
 

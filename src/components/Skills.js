@@ -1,5 +1,4 @@
 'use client';
-import { useEffect, useRef } from 'react';
 
 const skillCategories = [
   {
@@ -57,24 +56,9 @@ const skillCategories = [
 ];
 
 export default function Skills() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.1 }
-    );
-    const elements = sectionRef.current?.querySelectorAll('.fade-in, .stagger-children');
-    elements?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
 
   return (
-    <section id="skills" style={{ padding: '120px 24px', backgroundColor: '#080808', position: 'relative' }} ref={sectionRef}>
+    <section id="skills" style={{ padding: '120px 24px', backgroundColor: '#080808', position: 'relative' }}>
       <div className="absolute" style={{ bottom: '10%', left: '-5%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(245,158,11,0.04) 0%, transparent 70%)', borderRadius: '50%' }}></div>
 
       <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
@@ -112,10 +96,8 @@ export default function Skills() {
                     style={{
                       display: 'flex', alignItems: 'flex-start', gap: '10px',
                       marginBottom: '14px', padding: '8px 12px',
-                      borderRadius: '8px', transition: 'background 0.3s ease',
+                      borderRadius: '8px',
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.03)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
                   >
                     <span style={{ color: category.color, marginTop: '2px', flexShrink: 0, fontSize: '0.7rem' }}>●</span>
                     <span style={{ color: '#d1d5db', fontSize: '0.9rem', lineHeight: '1.5' }}>{skill}</span>

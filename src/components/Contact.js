@@ -1,5 +1,4 @@
 'use client';
-import { useEffect, useRef } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 
 const contactInfo = [
@@ -19,29 +18,13 @@ const inputStyle = {
   color: '#ffffff',
   fontSize: '0.95rem',
   outline: 'none',
-  transition: 'all 0.4s ease',
 };
 
 export default function Contact() {
-  const sectionRef = useRef(null);
   const [state, handleSubmit] = useForm("mdalbaqz");
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.15 }
-    );
-    const elements = sectionRef.current?.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
-    elements?.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="contact" style={{ padding: '120px 24px', backgroundColor: '#080808', position: 'relative' }} ref={sectionRef}>
+    <section id="contact" style={{ padding: '120px 24px', backgroundColor: '#080808', position: 'relative' }}>
       <div className="absolute" style={{ bottom: '10%', left: '50%', transform: 'translateX(-50%)', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(245,158,11,0.04) 0%, transparent 70%)', borderRadius: '50%' }}></div>
 
       <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
@@ -93,9 +76,7 @@ export default function Contact() {
                         href={info.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ color: '#d1d5db', textDecoration: 'none', fontSize: '0.9rem', transition: 'color 0.3s ease' }}
-                        onMouseEnter={(e) => (e.target.style.color = '#f59e0b')}
-                        onMouseLeave={(e) => (e.target.style.color = '#d1d5db')}
+                        style={{ color: '#d1d5db', textDecoration: 'none', fontSize: '0.9rem' }}
                       >
                         {info.value}
                       </a>
