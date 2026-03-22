@@ -1,5 +1,4 @@
 'use client';
-import { useState, useRef } from 'react';
 
 const projects = [
   {
@@ -17,7 +16,6 @@ const projects = [
     tags: ['Shopify', 'Branding', 'SEO', 'UI/UX', 'Analytics'],
     gradient: 'linear-gradient(135deg, #f59e0b, #ea580c)',
     icon: '🧴',
-    video: null,
     github: null,
   },
   {
@@ -34,7 +32,6 @@ const projects = [
     tags: ['Shopify', 'eCommerce', 'SEO', 'CRO'],
     gradient: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
     icon: '👔',
-    video: '/videos/aura-belts-demo.mp4',
     github: null,
   },
   {
@@ -51,7 +48,6 @@ const projects = [
     tags: ['Wix', 'Landing Pages', 'SEO', 'Content Strategy'],
     gradient: 'linear-gradient(135deg, #22c55e, #10b981)',
     icon: '💪',
-    video: '/videos/lagree-pulse-demo.mp4',
     github: null,
   },
   {
@@ -69,7 +65,6 @@ const projects = [
     tags: ['Android', 'Kotlin', 'Firebase', 'Java'],
     gradient: 'linear-gradient(135deg, #a855f7, #6366f1)',
     icon: '📱',
-    video: '/videos/office-app-demo.mp4',
     github: 'https://github.com/abdulrehmang12/OfficeApp',
   },
   {
@@ -88,7 +83,6 @@ const projects = [
     tags: ['TypeScript', 'Firebase', 'Stripe', 'OpenAI', 'React', 'SaaS'],
     gradient: 'linear-gradient(135deg, #06b6d4, #0891b2)',
     icon: '🚀',
-    video: null,
     github: 'https://github.com/abdulrehmang12/seo-blog-saas',
   },
   {
@@ -107,7 +101,6 @@ const projects = [
     tags: ['React', 'JavaScript', 'API Integration', 'Responsive Design'],
     gradient: 'linear-gradient(135deg, #3b82f6, #1e40af)',
     icon: '🌤️',
-    video: null,
     github: 'https://github.com/abdulrehmang12/weather-app',
   },
   {
@@ -126,7 +119,6 @@ const projects = [
     tags: ['TypeScript', 'WebSocket', 'React', 'Collaboration', 'Code Editor'],
     gradient: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
     icon: '💻',
-    video: null,
     github: 'https://github.com/abdulrehmang12/collab-code-editor',
   },
   {
@@ -145,7 +137,6 @@ const projects = [
     tags: ['JavaScript', 'Automation', 'LinkedIn API', 'Node.js', 'Web Scraping'],
     gradient: 'linear-gradient(135deg, #0ea5e9, #0284c7)',
     icon: '💼',
-    video: null,
     github: 'https://github.com/abdulrehmang12/linkedin-job-automator',
   },
   {
@@ -164,7 +155,6 @@ const projects = [
     tags: ['JavaScript', 'AI/ML', 'Project Management', 'React', 'Node.js'],
     gradient: 'linear-gradient(135deg, #f59e0b, #d97706)',
     icon: '📊',
-    video: null,
     github: 'https://github.com/abdulrehmang12/ai-project-planner',
   },
   {
@@ -183,129 +173,11 @@ const projects = [
     tags: ['JavaScript', 'MERN Stack', 'React', 'Node.js', 'MongoDB'],
     gradient: 'linear-gradient(135deg, #ec4899, #f43f5e)',
     icon: '🛒',
-    video: null,
     github: 'https://github.com/abdulrehmang12/ecommerce-fullstack-design',
   },
 ];
 
-function VideoPlayer({ src, gradient }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef(null);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  return (
-    <div
-      style={{
-        position: 'relative',
-        borderRadius: '14px',
-        overflow: 'hidden',
-        marginBottom: '20px',
-        border: '1px solid rgba(255,255,255,0.08)',
-        background: '#000',
-        cursor: 'pointer',
-      }}
-      onClick={togglePlay}
-    >
-      {/* Gradient top accent */}
-      <div style={{ height: '3px', background: gradient }}></div>
-
-      <video
-        ref={videoRef}
-        src={src}
-        style={{
-          width: '100%',
-          display: 'block',
-          borderRadius: '0 0 14px 14px',
-          maxHeight: '220px',
-          objectFit: 'cover',
-        }}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        onEnded={() => setIsPlaying(false)}
-        playsInline
-        preload="metadata"
-      />
-
-      {/* Play/Pause overlay */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '3px',
-          left: 0,
-          right: 0,
-          bottom: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: isPlaying ? 'transparent' : 'rgba(0, 0, 0, 0.5)',
-          opacity: isPlaying ? 0 : 1,
-        }}
-        onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-        onMouseLeave={(e) => {
-          if (isPlaying) e.currentTarget.style.opacity = '0';
-        }}
-      >
-        <div
-          style={{
-            width: '56px',
-            height: '56px',
-            borderRadius: '50%',
-            background: 'rgba(245, 158, 11, 0.9)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 8px 32px rgba(245, 158, 11, 0.3)',
-          }}
-        >
-          {isPlaying ? (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
-              <rect x="6" y="4" width="4" height="16" rx="1" />
-              <rect x="14" y="4" width="4" height="16" rx="1" />
-            </svg>
-          ) : (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#000" style={{ marginLeft: '3px' }}>
-              <polygon points="5,3 19,12 5,21" />
-            </svg>
-          )}
-        </div>
-      </div>
-
-      {/* Video badge */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '14px',
-          right: '12px',
-          padding: '4px 12px',
-          background: 'rgba(245, 158, 11, 0.15)',
-          border: '1px solid rgba(245, 158, 11, 0.3)',
-          borderRadius: '9999px',
-          fontSize: '0.65rem',
-          color: '#f59e0b',
-          fontWeight: '600',
-          letterSpacing: '0.05em',
-          textTransform: 'uppercase',
-          backdropFilter: 'blur(8px)',
-        }}
-      >
-        ▶ Demo Video
-      </div>
-    </div>
-  );
-}
-
 export default function Projects() {
-
   return (
     <section id="projects" style={{ padding: '120px 24px', backgroundColor: '#080808', position: 'relative' }}>
       <div className="absolute" style={{ top: '30%', right: '-5%', width: '350px', height: '350px', background: 'radial-gradient(circle, rgba(245,158,11,0.04) 0%, transparent 70%)', borderRadius: '50%' }}></div>
@@ -334,17 +206,9 @@ export default function Projects() {
                 overflow: 'hidden',
               }}
             >
-              {/* Gradient header - only show if no video */}
-              {!project.video && (
-                <div style={{ height: '6px', background: project.gradient }}></div>
-              )}
+              <div style={{ height: '6px', background: project.gradient }}></div>
 
               <div style={{ padding: '28px' }}>
-                {/* Video player */}
-                {project.video && (
-                  <VideoPlayer src={project.video} gradient={project.gradient} />
-                )}
-
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                   <div style={{
                     width: '48px', height: '48px',
