@@ -2,6 +2,36 @@
 
 const experienceSections = [
   {
+    category: 'Full Stack Developer (Internship)',
+    icon: '🚀',
+    company: 'Developer Hubs Corporation',
+    website: 'developershubcorp.com',
+    type: 'Remote Internship',
+    points: [
+      'Developed full-stack web applications using MERN stack (MongoDB, Express, React, Node.js).',
+      'Built responsive, user-friendly interfaces with React and modern CSS frameworks.',
+      'Created RESTful APIs with Node.js and Express for backend services.',
+      'Implemented database design and optimization with MongoDB.',
+      'Collaborated with team members on code reviews and agile development practices.',
+      'Deployed applications to production environments and maintained code quality standards.',
+    ],
+  },
+  {
+    category: 'Web Developer (Internship)',
+    icon: '🌐',
+    company: 'Coregen India',
+    website: 'coregen.in',
+    type: 'Remote Internship',
+    points: [
+      'Developed and maintained web applications using modern frontend technologies.',
+      'Worked on responsive web design and cross-browser compatibility.',
+      'Implemented interactive user interfaces with HTML, CSS, and JavaScript.',
+      'Collaborated with designers to translate mockups into functional web pages.',
+      'Fixed bugs and optimized website performance for better user experience.',
+      'Participated in code reviews and followed best practices in web development.',
+    ],
+  },
+  {
     category: 'Android Development',
     icon: '📱',
     points: [
@@ -96,9 +126,24 @@ export default function Experience() {
               </div>
 
               <div className="glass-card" style={{ padding: '28px', marginLeft: '16px' }}>
-                <h4 style={{ fontSize: '1.15rem', fontWeight: '700', color: '#f59e0b', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <h4 style={{ fontSize: '1.15rem', fontWeight: '700', color: '#f59e0b', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   {section.category}
                 </h4>
+                {section.company && (
+                  <div style={{ marginBottom: '12px' }}>
+                    <p style={{ color: '#d1d5db', fontSize: '0.9rem', margin: '4px 0', fontWeight: '500' }}>
+                      {section.company}
+                    </p>
+                    {section.website && (
+                      <a href={`https://${section.website}`} target="_blank" rel="noopener noreferrer" style={{ color: '#f59e0b', fontSize: '0.85rem', textDecoration: 'none', transition: 'all 0.3s ease' }} onMouseEnter={(e) => (e.target.style.textDecoration = 'underline')} onMouseLeave={(e) => (e.target.style.textDecoration = 'none')}>
+                        {section.website}
+                      </a>
+                    )}
+                    {section.type && (
+                      <p style={{ color: '#6b7280', fontSize: '0.8rem', margin: '4px 0' }}>{section.type}</p>
+                    )}
+                  </div>
+                )}
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                   {section.points.map((point, i) => (
                     <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '12px' }}>

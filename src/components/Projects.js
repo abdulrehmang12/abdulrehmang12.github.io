@@ -17,7 +17,8 @@ const projects = [
     tags: ['Shopify', 'Branding', 'SEO', 'UI/UX', 'Analytics'],
     gradient: 'linear-gradient(135deg, #f59e0b, #ea580c)',
     icon: '🧴',
-    video: null, // No video for Aura Mistica
+    video: null,
+    github: null,
   },
   {
     title: 'Aura Belts',
@@ -33,7 +34,8 @@ const projects = [
     tags: ['Shopify', 'eCommerce', 'SEO', 'CRO'],
     gradient: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
     icon: '👔',
-    video: '/videos/aura-belts-demo.mp4', // <-- Add your video file here
+    video: '/videos/aura-belts-demo.mp4',
+    github: null,
   },
   {
     title: 'Lagree Pulse',
@@ -49,7 +51,8 @@ const projects = [
     tags: ['Wix', 'Landing Pages', 'SEO', 'Content Strategy'],
     gradient: 'linear-gradient(135deg, #22c55e, #10b981)',
     icon: '💪',
-    video: '/videos/lagree-pulse-demo.mp4', // <-- Add your video file here
+    video: '/videos/lagree-pulse-demo.mp4',
+    github: null,
   },
   {
     title: 'Office Management App',
@@ -66,7 +69,62 @@ const projects = [
     tags: ['Android', 'Kotlin', 'Firebase', 'Java'],
     gradient: 'linear-gradient(135deg, #a855f7, #6366f1)',
     icon: '📋',
-    video: '/videos/office-app-demo.mp4', // <-- Add your video file here
+    video: '/videos/office-app-demo.mp4',
+    github: 'https://github.com/abdulrehmang12/office-management-app',
+  },
+  {
+    title: 'Task Management System',
+    subtitle: 'Full Stack MERN Application',
+    role: 'Full Stack Developer',
+    description: 'Built a comprehensive task management system with real-time updates, user authentication, and team collaboration features.',
+    highlights: [
+      'Developed React frontend with Redux state management',
+      'Created RESTful API with Node.js and Express',
+      'Implemented MongoDB database with proper indexing',
+      'Added real-time notifications using WebSockets',
+      'Integrated JWT authentication and role-based access control',
+    ],
+    tags: ['React', 'Node.js', 'MongoDB', 'Express', 'Redux'],
+    gradient: 'linear-gradient(135deg, #ec4899, #f43f5e)',
+    icon: '✅',
+    video: null,
+    github: 'https://github.com/abdulrehmang12/task-management-system',
+  },
+  {
+    title: 'E-Commerce Dashboard',
+    subtitle: 'Admin Analytics & Management Platform',
+    role: 'Full Stack Developer',
+    description: 'Created an advanced admin dashboard for e-commerce platforms with analytics, inventory management, and order processing.',
+    highlights: [
+      'Built interactive dashboard with data visualization charts',
+      'Implemented inventory tracking and product management',
+      'Created order processing workflow with status tracking',
+      'Added export functionality for reports (PDF, CSV)',
+      'Optimized database queries for large-scale data handling',
+    ],
+    tags: ['React', 'Node.js', 'MySQL', 'Chart.js', 'Tailwind CSS'],
+    gradient: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+    icon: '📊',
+    video: null,
+    github: 'https://github.com/abdulrehmang12/ecommerce-admin-dashboard',
+  },
+  {
+    title: 'Social Media Platform',
+    subtitle: 'Real-time Messaging & Network App',
+    role: 'Full Stack Developer',
+    description: 'Developed a social networking platform with messaging, notifications, and user connections similar to modern social apps.',
+    highlights: [
+      'Implemented real-time messaging with Socket.io',
+      'Built user authentication and profile management',
+      'Created post feed with likes, comments, and shares',
+      'Added file upload functionality for images and media',
+      'Developed notification system for user interactions',
+    ],
+    tags: ['MERN', 'Socket.io', 'Cloudinary', 'JWT', 'MongoDB'],
+    gradient: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+    icon: '💬',
+    video: null,
+    github: 'https://github.com/abdulrehmang12/social-media-platform',
   },
 ];
 
@@ -259,11 +317,44 @@ export default function Projects() {
                   ))}
                 </ul>
 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
                   {project.tags.map((tag) => (
                     <span key={tag} className="tag">{tag}</span>
                   ))}
                 </div>
+
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      padding: '10px 16px',
+                      background: 'rgba(245, 158, 11, 0.1)',
+                      border: '1px solid rgba(245, 158, 11, 0.3)',
+                      borderRadius: '8px',
+                      color: '#f59e0b',
+                      textDecoration: 'none',
+                      fontSize: '0.85rem',
+                      fontWeight: '500',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = 'rgba(245, 158, 11, 0.2)';
+                      e.target.style.borderColor = 'rgba(245, 158, 11, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = 'rgba(245, 158, 11, 0.1)';
+                      e.target.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+                    }}
+                  >
+                    🐙 View on GitHub
+                  </a>
+                )}
               </div>
             </div>
           ))}
