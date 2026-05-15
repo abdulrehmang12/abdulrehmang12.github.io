@@ -276,7 +276,6 @@ export default function Projects() {
         <div className="latest-head">
           <div>
             <p className="section-kicker">Latest GitHub Repositories</p>
-            <h3>Fresh work from your GitHub activity</h3>
           </div>
           <span className={`github-status ${githubState}`}>
             {githubState === 'live' ? 'Live from GitHub' : 'Latest verified GitHub'}
