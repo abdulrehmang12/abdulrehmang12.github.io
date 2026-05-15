@@ -1,50 +1,104 @@
 'use client';
 
-export default function Education() {
+const coursework = [
+  'Data Structures and Algorithms',
+  'Object-Oriented Programming',
+  'Web Development',
+  'Database Systems',
+  'Software Engineering',
+  'Mobile App Development',
+];
 
+const certifications = [
+  'The Complete Web Developer Bootcamp - Udemy, Dr. Angela Yu',
+  'React - The Complete Guide - Udemy, Maximilian Schwarzmuller',
+  'Node.js, Express, MongoDB and More - The Complete Bootcamp',
+];
+
+export default function Education() {
   return (
-    <section id="education" style={{ padding: '120px 24px', position: 'relative' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <div className="fade-in" style={{ textAlign: 'center', marginBottom: '64px' }}>
-          <p style={{ color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.3em', fontSize: '0.8rem', marginBottom: '12px', fontWeight: '500' }}>
-            Academic background
+    <section id="education" className="site-section">
+      <div className="container education-grid">
+        <div>
+          <p className="section-kicker">Education</p>
+          <h2 className="section-title">Computer science foundation with continuous web training.</h2>
+          <p className="education-copy">
+            My academic background supports the practical full-stack work in this portfolio:
+            data structures, OOP, databases, software engineering, web development, and mobile apps.
           </p>
-          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: '700' }}>
-            My <span style={{ color: '#f59e0b' }}>Education</span>
-          </h2>
-          <div className="section-divider"></div>
         </div>
 
-        <div className="scale-in" style={{ position: 'relative' }}>
-          {/* Animated border glow */}
-          <div
-            style={{
-              position: 'absolute', inset: '-2px',
-              background: 'linear-gradient(135deg, #f59e0b, transparent, #f59e0b, transparent)',
-              borderRadius: '22px',
-              opacity: 0.3,
-              filter: 'blur(4px)',
-            }}
-          ></div>
-
-          <div className="glass-card" style={{ padding: '48px', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-            <div style={{ fontSize: '3rem', marginBottom: '20px' }}>🎓</div>
-            <h3 style={{ fontSize: '1.6rem', fontWeight: '700', color: '#ffffff', marginBottom: '8px' }}>
-              Bachelor&apos;s in Computer Science
-            </h3>
-            <p style={{ color: '#f59e0b', fontSize: '1.1rem', fontWeight: '500', marginBottom: '8px' }}>
-              National University of Modern Languages (NUML)
-            </p>
-            <div className="gold-badge" style={{ marginTop: '16px' }}>2020 – 2024</div>
-
-            <div style={{ marginTop: '32px', display: 'flex', justifyContent: 'center', gap: '24px', flexWrap: 'wrap' }}>
-              {['Data Structures', 'OOP', 'Web Dev', 'Database Systems', 'Mobile App Dev'].map((course) => (
-                <span key={course} className="tag">{course}</span>
-              ))}
+        <div className="education-stack">
+          <article className="panel education-card">
+            <div className="timeline-meta">
+              <span>2020 - 2024</span>
+              <span>Islamabad, Pakistan</span>
             </div>
-          </div>
+            <h3>Bachelor of Science in Computer Science</h3>
+            <p>National University of Modern Languages (NUML)</p>
+            <ul className="pill-list">
+              {coursework.map((course) => (
+                <li className="tag" key={course}>
+                  {course}
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article className="panel education-card">
+            <div className="timeline-meta">
+              <span>Certifications and Training</span>
+            </div>
+            <ul className="clean-list">
+              {certifications.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </article>
         </div>
       </div>
+
+      <style jsx>{`
+        .education-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+          gap: 34px;
+          align-items: start;
+        }
+
+        .education-copy {
+          margin: 20px 0 0;
+          color: #aeb8c7;
+          line-height: 1.78;
+        }
+
+        .education-stack {
+          display: grid;
+          gap: 18px;
+        }
+
+        .education-card {
+          padding: 24px;
+        }
+
+        .education-card h3 {
+          margin: 0;
+          color: #ffffff;
+          font-size: 1.25rem;
+        }
+
+        .education-card p {
+          margin: 8px 0 20px;
+          color: #d1d8e4;
+          font-weight: 700;
+        }
+
+        @media (max-width: 880px) {
+          .education-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </section>
   );
 }

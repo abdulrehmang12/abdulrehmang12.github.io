@@ -1,162 +1,101 @@
 'use client';
 
-const experienceSections = [
+const roles = [
   {
-    category: 'Full Stack Developer (Internship)',
-    icon: '🚀',
+    title: 'Full Stack Developer',
+    company: 'Self-Employed Freelance',
+    period: 'Jan 2020 - Present',
+    location: 'Remote',
+    points: [
+      'Delivered 10+ end-to-end MERN stack applications for clients in Pakistan and internationally.',
+      'Built and launched 5+ Shopify stores with an average 30% page speed improvement through performance optimization and image compression.',
+      'Developed Node.js and Express REST APIs handling 1,000+ daily requests with JWT authentication and role-based access control.',
+      'Integrated Stripe subscriptions and OpenAI API features into SaaS products to support client revenue generation.',
+      'Improved store SEO scores by 25%+ using Search Console insights, on-page optimization, and structured content strategies.',
+      'Configured GitHub Actions deployments to Vercel and Netlify, reducing release time from hours to minutes.',
+    ],
+  },
+  {
+    title: 'Full Stack Developer Intern',
     company: 'Developer Hubs Corporation',
-    website: 'developershubcorp.com',
-    type: 'Remote Internship',
+    period: 'Jan 2024 - Jun 2024',
+    location: 'Remote',
     points: [
-      'Developed full-stack web applications using MERN stack (MongoDB, Express, React, Node.js).',
-      'Built responsive, user-friendly interfaces with React and modern CSS frameworks.',
-      'Created RESTful APIs with Node.js and Express for backend services.',
-      'Implemented database design and optimization with MongoDB.',
-      'Collaborated with team members on code reviews and agile development practices.',
-      'Deployed applications to production environments and maintained code quality standards.',
+      'Developed and shipped 3 full-stack features per sprint using MongoDB, Express, React, and Node.js in an agile team of 5 developers.',
+      'Built a reusable React component library used across 2 projects, reducing UI development time by approximately 20%.',
+      'Optimized MongoDB queries and Express endpoints, reducing average response time by 35%.',
+      'Participated in daily standups, sprint planning, peer code reviews, and Scrum delivery workflows.',
     ],
   },
   {
-    category: 'Web Developer (Internship)',
-    icon: '🌐',
+    title: 'Web Developer Intern',
     company: 'Coregen India',
-    website: 'coregen.in',
-    type: 'Remote Internship',
+    period: 'Jul 2024 - Dec 2024',
+    location: 'Remote',
     points: [
-      'Developed and maintained web applications using modern frontend technologies.',
-      'Worked on responsive web design and cross-browser compatibility.',
-      'Implemented interactive user interfaces with HTML, CSS, and JavaScript.',
-      'Collaborated with designers to translate mockups into functional web pages.',
-      'Fixed bugs and optimized website performance for better user experience.',
-      'Participated in code reviews and followed best practices in web development.',
-    ],
-  },
-  {
-    category: 'Android Development',
-    icon: '📱',
-    points: [
-      'Designed and developed an External Office Management Android App (available on GitHub), enabling employee/task tracking and basic workflow management.',
-      'Implemented data persistence using Firebase (authentication, database, and storage).',
-      'Built clean, user-friendly UI focused on internal productivity and ease of use.',
-      'Integrated API-driven data flows and Firebase services for reliable, real-time data sync and notifications.',
-      'Followed modular, maintainable architecture (MVVM / repository pattern) with Git version control.',
-    ],
-  },
-  {
-    category: 'Shopify & eCommerce',
-    icon: '🛒',
-    points: [
-      'Built and launched multiple Shopify stores from concept to production-ready platforms.',
-      'Engineered complete store architecture: collections, navigation hierarchy, catalog structure, and UX flow.',
-      'Implemented advanced on-page SEO strategies (keyword clustering, optimized descriptions, metadata).',
-      'Integrated Google Analytics and tracking tools for data-driven decisions.',
-      'Optimized mobile responsiveness and site performance to boost engagement and reduce bounce rate.',
-      'Managed product uploads at scale with structured tagging, filtering, and collections.',
-      'Performed theme customization and code adjustments (HTML/CSS/JS/Liquid) for brand consistency.',
-    ],
-  },
-  {
-    category: 'MERN & Web Development',
-    icon: '💻',
-    points: [
-      'Built MERN-stack applications with RESTful APIs using Node.js & Express with MongoDB.',
-      'Developed React-based frontends with reusable components and responsive layouts.',
-      'Implemented authentication, role-based access control, and CRUD operations.',
-      'Integrated external APIs and third-party services (payment, email, analytics).',
-      'Applied best practices for code structure, reusability, and Git-based workflows.',
+      'Developed and maintained responsive web pages using HTML5, CSS3, and JavaScript across Chrome, Firefox, and Safari.',
+      'Resolved 20+ frontend bugs and implemented UI improvements that increased internal usability scores.',
+      'Translated Figma mockups into pixel-accurate, functional web interfaces in collaboration with UI/UX designers.',
     ],
   },
 ];
 
 export default function Experience() {
-
   return (
-    <section id="experience" style={{ padding: '120px 24px', position: 'relative' }}>
-      <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
-        <div className="fade-in" style={{ textAlign: 'center', marginBottom: '80px' }}>
-          <p style={{ color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.3em', fontSize: '0.8rem', marginBottom: '12px', fontWeight: '500' }}>
-            My Journey
+    <section id="experience" className="site-section">
+      <div className="container">
+        <div className="section-head">
+          <p className="section-kicker">Professional Experience</p>
+          <h2 className="section-title">Recent work that shows delivery, ownership, and measurable impact.</h2>
+          <p className="section-copy">
+            The experience section now mirrors your current full-stack resume, including dates,
+            internships, and quantifiable results from freelance delivery.
           </p>
-          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: '700' }}>
-            Work <span style={{ color: '#f59e0b' }}>Experience</span>
-          </h2>
-          <div className="section-divider"></div>
         </div>
 
-        {/* Job header */}
-        <div className="fade-in glass-card" style={{ padding: '32px', marginBottom: '40px', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '16px' }}>
-          <div>
-            <h3 style={{ fontSize: '1.4rem', fontWeight: '700', color: '#ffffff', marginBottom: '4px' }}>
-              Freelance Android &amp; Web Developer
-            </h3>
-            <p style={{ color: '#9ca3af' }}>Self-Employed | Remote / Rawalpindi, Pakistan</p>
-          </div>
-          <div className="gold-badge">
-            🟢 2020 – Present
-          </div>
-        </div>
-
-        {/* Timeline */}
-        <div style={{ position: 'relative', paddingLeft: '32px' }}>
-          {/* Vertical line */}
-          <div style={{
-            position: 'absolute', left: '14px', top: 0, bottom: 0,
-            width: '2px',
-            background: 'linear-gradient(to bottom, #f59e0b, rgba(245,158,11,0.1))',
-          }}></div>
-
-          {experienceSections.map((section, index) => (
-            <div
-              key={index}
-              className={index % 2 === 0 ? 'fade-in-left' : 'fade-in-right'}
-              style={{ marginBottom: index < experienceSections.length - 1 ? '40px' : '0', position: 'relative' }}
-            >
-              {/* Timeline dot */}
-              <div style={{
-                position: 'absolute', left: '-26px', top: '4px',
-                width: '24px', height: '24px',
-                background: '#0a0a0a',
-                border: '3px solid #f59e0b',
-                borderRadius: '50%',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '0.7rem',
-                zIndex: 2,
-              }}>
-                {section.icon}
+        <div className="timeline">
+          {roles.map((role) => (
+            <article className="panel timeline-item" key={`${role.company}-${role.period}`}>
+              <div className="timeline-meta">
+                <span>{role.period}</span>
+                <span>{role.location}</span>
               </div>
-
-              <div className="glass-card" style={{ padding: '28px', marginLeft: '16px' }}>
-                <h4 style={{ fontSize: '1.15rem', fontWeight: '700', color: '#f59e0b', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  {section.category}
-                </h4>
-                {section.company && (
-                  <div style={{ marginBottom: '12px' }}>
-                    <p style={{ color: '#d1d5db', fontSize: '0.9rem', margin: '4px 0', fontWeight: '500' }}>
-                      {section.company}
-                    </p>
-                    {section.website && (
-                      <a href={`https://${section.website}`} target="_blank" rel="noopener noreferrer" style={{ color: '#f59e0b', fontSize: '0.85rem', textDecoration: 'none', transition: 'all 0.3s ease' }} onMouseEnter={(e) => (e.target.style.textDecoration = 'underline')} onMouseLeave={(e) => (e.target.style.textDecoration = 'none')}>
-                        {section.website}
-                      </a>
-                    )}
-                    {section.type && (
-                      <p style={{ color: '#6b7280', fontSize: '0.8rem', margin: '4px 0' }}>{section.type}</p>
-                    )}
-                  </div>
-                )}
-                <ul style={{ listStyle: 'none', padding: 0 }}>
-                  {section.points.map((point, i) => (
-                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '12px' }}>
-                      <span style={{ marginTop: '8px', width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#f59e0b', flexShrink: 0 }}></span>
-                      <span style={{ color: '#9ca3af', lineHeight: '1.7', fontSize: '0.95rem' }}>{point}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="role-head">
+                <div>
+                  <h3>{role.title}</h3>
+                  <p>{role.company}</p>
+                </div>
               </div>
-            </div>
+              <ul className="clean-list">
+                {role.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
       </div>
+
+      <style jsx>{`
+        .role-head {
+          display: flex;
+          justify-content: space-between;
+          gap: 18px;
+          align-items: start;
+        }
+
+        .role-head h3 {
+          margin: 0;
+          color: #ffffff;
+          font-size: clamp(1.2rem, 3vw, 1.55rem);
+        }
+
+        .role-head p {
+          margin: 6px 0 0;
+          color: #d1d8e4;
+          font-weight: 700;
+        }
+      `}</style>
     </section>
   );
 }

@@ -1,169 +1,263 @@
 'use client';
-import { useForm, ValidationError } from '@formspree/react';
+
+import { ValidationError, useForm } from '@formspree/react';
 
 const contactInfo = [
-  { icon: '📧', label: 'Email', value: 'mano555m10@gmail.com', href: 'mailto:mano555m10@gmail.com' },
-  { icon: '📱', label: 'Phone', value: '+92 333 841 2569', href: 'tel:+923338412569' },
-  { icon: '💼', label: 'LinkedIn', value: 'abdulrehmang12', href: 'https://www.linkedin.com/in/abdulrehmang12' },
-  { icon: '🐙', label: 'GitHub', value: 'abdulrehmang12', href: 'https://github.com/abdulrehmang12' },
-  { icon: '📍', label: 'Location', value: 'Rawalpindi, Punjab, Pakistan', href: null },
+  { label: 'Email', value: 'Mano555m10@gmail.com', href: 'mailto:Mano555m10@gmail.com', detail: 'Best for role and project inquiries' },
+  { label: 'Phone', value: '+92 333 841 2569', href: 'tel:+923338412569', detail: 'Available for quick screening calls' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/abdulrehmang12', href: 'https://www.linkedin.com/in/abdulrehmang12', detail: 'Connect for full-stack opportunities' },
+  { label: 'GitHub', value: 'github.com/abdulrehmang12', href: 'https://github.com/abdulrehmang12', detail: 'Review source code and repositories' },
 ];
 
-const inputStyle = {
-  width: '100%',
-  backgroundColor: 'rgba(10, 10, 10, 0.8)',
-  border: '1px solid rgba(255,255,255,0.08)',
-  borderRadius: '14px',
-  padding: '14px 20px',
-  color: '#ffffff',
-  fontSize: '0.95rem',
-  outline: 'none',
-};
-
 export default function Contact() {
-  const [state, handleSubmit] = useForm("mdalbaqz");
+  const [state, handleSubmit] = useForm('mdalbaqz');
 
   return (
-    <section id="contact" style={{ padding: '120px 24px', backgroundColor: '#080808', position: 'relative' }}>
-      <div className="absolute" style={{ bottom: '10%', left: '50%', transform: 'translateX(-50%)', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(245,158,11,0.04) 0%, transparent 70%)', borderRadius: '50%' }}></div>
-
-      <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
-        <div className="fade-in" style={{ textAlign: 'center', marginBottom: '80px' }}>
-          <p style={{ color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.3em', fontSize: '0.8rem', marginBottom: '12px', fontWeight: '500' }}>
-            Get in touch
+    <section id="contact" className="site-section site-section-alt">
+      <div className="container contact-grid">
+        <div className="contact-copy-panel panel">
+          <p className="section-kicker">Contact</p>
+          <h2 className="section-title">Let&apos;s talk about full-stack roles, freelance builds, or product work.</h2>
+          <p className="contact-copy">
+            I am open to full-stack developer opportunities, remote collaboration, SaaS builds,
+            MERN projects, Shopify optimization, and API/integration work.
           </p>
-          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: '700' }}>
-            Contact <span style={{ color: '#f59e0b' }}>Me</span>
-          </h2>
-          <div className="section-divider"></div>
+
+          <div className="availability-strip">
+            <span>Based in Rawalpindi, Pakistan</span>
+            <span>Remote-ready</span>
+            <span>Full-stack / MERN / Shopify</span>
+          </div>
+
+          <div className="contact-list">
+            {contactInfo.map((item) => (
+              <a className="contact-item" key={item.label} href={item.href} target="_blank" rel="noreferrer">
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+                <small>{item.detail}</small>
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '48px' }}>
-          {/* Info */}
-          <div className="fade-in-left">
-            <h3 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#ffffff', marginBottom: '12px' }}>
-              Let&apos;s work together
-            </h3>
-            <p style={{ color: '#9ca3af', lineHeight: '1.8', marginBottom: '36px' }}>
-              I&apos;m always open to discussing new projects, creative ideas, or
-              opportunities. Whether you need an Android app, a Shopify store,
-              or a full MERN stack application — feel free to reach out!
-            </p>
+        <form className="panel contact-form" onSubmit={handleSubmit}>
+          <div className="form-head">
+            <span>Direct Message</span>
+            <h3>Send a message</h3>
+            <p>Share the role, project scope, or collaboration details.</p>
+          </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {contactInfo.map((info) => (
-                <div
-                  key={info.label}
-                  className="glass-card"
-                  style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '16px 20px', borderRadius: '14px' }}
-                >
-                  <div style={{
-                    width: '44px', height: '44px',
-                    background: 'rgba(245, 158, 11, 0.08)',
-                    border: '1px solid rgba(245, 158, 11, 0.15)',
-                    borderRadius: '12px',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '1.2rem', flexShrink: 0,
-                  }}>
-                    {info.icon}
-                  </div>
-                  <div>
-                    <p style={{ color: '#6b7280', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
-                      {info.label}
-                    </p>
-                    {info.href ? (
-                      <a
-                        href={info.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color: '#d1d5db', textDecoration: 'none', fontSize: '0.9rem' }}
-                      >
-                        {info.value}
-                      </a>
-                    ) : (
-                      <p style={{ color: '#d1d5db', fontSize: '0.9rem' }}>{info.value}</p>
-                    )}
-                  </div>
-                </div>
-              ))}
+          {state.succeeded ? (
+            <div className="success-message">
+              <strong>Message sent.</strong>
+              <p>Thanks for reaching out. I will get back to you soon.</p>
             </div>
-          </div>
+          ) : (
+            <>
+              <label>
+                <span>Your Name</span>
+                <input className="field" type="text" name="name" required placeholder="Your name" />
+                <ValidationError prefix="Name" field="name" errors={state.errors} />
+              </label>
 
-          {/* Form */}
-          <div className="fade-in-right">
-            <form onSubmit={handleSubmit} className="glass-card" style={{ padding: '36px' }}>
-              <h4 style={{ fontSize: '1.1rem', fontWeight: '600', color: '#ffffff', marginBottom: '24px' }}>
-                Send me a message ✉️
-              </h4>
+              <label>
+                <span>Your Email</span>
+                <input className="field" type="email" name="email" required placeholder="you@example.com" />
+                <ValidationError prefix="Email" field="email" errors={state.errors} />
+              </label>
 
-              {state.succeeded ? (
-                <div style={{
-                  textAlign: 'center',
-                  padding: '40px 20px',
-                }}>
-                  <p style={{ fontSize: '3rem', marginBottom: '16px' }}>✅</p>
-                  <h3 style={{ color: '#f59e0b', fontSize: '1.3rem', fontWeight: '600', marginBottom: '8px' }}>
-                    Message Sent!
-                  </h3>
-                  <p style={{ color: '#9ca3af', fontSize: '0.95rem' }}>
-                    Thanks for reaching out! I&apos;ll get back to you soon.
-                  </p>
-                </div>
-              ) : (
-                <>
-                  <div style={{ marginBottom: '20px' }}>
-                    <label style={{ color: '#9ca3af', fontSize: '0.8rem', marginBottom: '8px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Your Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      style={inputStyle}
-                      placeholder="John Doe"
-                      onFocus={(e) => { e.target.style.borderColor = 'rgba(245, 158, 11, 0.5)'; e.target.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.08)'; }}
-                      onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.boxShadow = 'none'; }}
-                    />
-                    <ValidationError prefix="Name" field="name" errors={state.errors} />
-                  </div>
-                  <div style={{ marginBottom: '20px' }}>
-                    <label style={{ color: '#9ca3af', fontSize: '0.8rem', marginBottom: '8px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Your Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      style={inputStyle}
-                      placeholder="john@example.com"
-                      onFocus={(e) => { e.target.style.borderColor = 'rgba(245, 158, 11, 0.5)'; e.target.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.08)'; }}
-                      onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.boxShadow = 'none'; }}
-                    />
-                    <ValidationError prefix="Email" field="email" errors={state.errors} />
-                  </div>
-                  <div style={{ marginBottom: '24px' }}>
-                    <label style={{ color: '#9ca3af', fontSize: '0.8rem', marginBottom: '8px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Message</label>
-                    <textarea
-                      name="message"
-                      required
-                      rows={5}
-                      style={{ ...inputStyle, resize: 'none' }}
-                      placeholder="Tell me about your project..."
-                      onFocus={(e) => { e.target.style.borderColor = 'rgba(245, 158, 11, 0.5)'; e.target.style.boxShadow = '0 0 20px rgba(245, 158, 11, 0.08)'; }}
-                      onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.boxShadow = 'none'; }}
-                    />
-                    <ValidationError prefix="Message" field="message" errors={state.errors} />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={state.submitting}
-                    className="btn-primary"
-                    style={{ width: '100%', border: 'none', cursor: 'pointer', fontSize: '1rem', textAlign: 'center', opacity: state.submitting ? 0.7 : 1 }}
-                  >
-                    {state.submitting ? '⏳ Sending...' : '🚀 Send Message'}
-                  </button>
-                </>
-              )}
-            </form>
-          </div>
-        </div>
+              <label>
+                <span>Phone Number</span>
+                <input className="field" type="tel" name="phone" required placeholder="+Your country code and your number" />
+                <ValidationError prefix="Phone" field="phone" errors={state.errors} />
+              </label>
+
+              <label>
+                <span>Message</span>
+                <textarea
+                  className="field"
+                  name="message"
+                  required
+                  rows={10}
+                  placeholder="Tell me about the role or project."
+                />
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
+              </label>
+
+              <button className="btn-primary" type="submit" disabled={state.submitting}>
+                {state.submitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </>
+          )}
+        </form>
       </div>
+
+      <style jsx>{`
+        .contact-grid {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(380px, 1fr);
+          gap: 24px;
+          align-items: stretch;
+        }
+
+        .contact-copy-panel {
+          display: flex;
+          flex-direction: column;
+          padding: clamp(24px, 4vw, 38px);
+        }
+
+        .contact-copy {
+          margin: 20px 0 0;
+          color: #aeb8c7;
+          line-height: 1.78;
+        }
+
+        .availability-strip {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-top: 22px;
+        }
+
+        .availability-strip span {
+          border: 1px solid rgba(255, 103, 15, 0.28);
+          border-radius: 999px;
+          background: rgba(255, 103, 15, 0.08);
+          color: #ffb07a;
+          font-size: 0.76rem;
+          font-weight: 850;
+          padding: 8px 11px;
+        }
+
+        .contact-list {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(170px, 1fr));
+          gap: 10px;
+          margin-top: auto;
+          padding-top: 30px;
+        }
+
+        .contact-item {
+          display: grid;
+          gap: 5px;
+          min-height: 126px;
+          border: 1px solid rgba(255, 255, 255, 0.09);
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.045);
+          padding: 16px;
+          text-decoration: none;
+          transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .contact-item:hover {
+          transform: translateY(-4px);
+          border-color: rgba(255, 103, 15, 0.46);
+          background: rgba(255, 103, 15, 0.075);
+        }
+
+        .contact-item span,
+        .contact-form label span,
+        .form-head span {
+          color: #ff8a3d;
+          font-size: 0.76rem;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
+        .contact-item strong {
+          color: #ffffff;
+          font-size: 0.96rem;
+          font-weight: 750;
+          overflow-wrap: anywhere;
+        }
+
+        .contact-item small {
+          align-self: end;
+          color: #8f9aac;
+          font-size: 0.78rem;
+          line-height: 1.45;
+        }
+
+        .contact-form {
+          display: grid;
+          align-content: start;
+          gap: 16px;
+          padding: clamp(22px, 3vw, 30px);
+          min-height: 100%;
+        }
+
+        .form-head {
+          margin-bottom: 2px;
+        }
+
+        .form-head h3 {
+          margin: 0;
+          color: #ffffff;
+          font-size: clamp(1.4rem, 3vw, 1.9rem);
+        }
+
+        .form-head p {
+          margin: 8px 0 0;
+          color: #aeb8c7;
+          line-height: 1.55;
+        }
+
+        .contact-form label {
+          display: grid;
+          gap: 8px;
+        }
+
+        .contact-form textarea {
+          resize: vertical;
+        }
+
+        .contact-form button {
+          width: 100%;
+          border: 0;
+          cursor: pointer;
+        }
+
+        .contact-form button:disabled {
+          cursor: progress;
+          opacity: 0.72;
+        }
+
+        .success-message {
+          padding: 34px 8px;
+          text-align: center;
+        }
+
+        .success-message strong {
+          color: #ffffff;
+          font-size: 1.35rem;
+        }
+
+        .success-message p {
+          margin: 10px 0 0;
+          color: #aeb8c7;
+        }
+
+        @media (max-width: 900px) {
+          .contact-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .contact-list {
+            margin-top: 0;
+          }
+        }
+
+        @media (max-width: 620px) {
+          .contact-list {
+            grid-template-columns: 1fr;
+          }
+
+          .contact-item {
+            min-height: auto;
+          }
+        }
+      `}</style>
     </section>
   );
 }

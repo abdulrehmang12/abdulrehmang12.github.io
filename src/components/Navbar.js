@@ -1,5 +1,7 @@
 'use client';
-import { useState, useEffect } from 'react';
+
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -17,124 +19,241 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 32);
 
-      const sections = navLinks.map((l) => l.href.replace('#', ''));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && window.scrollY >= el.offsetTop - 200) {
-          setActive(sections[i]);
+      for (let i = navLinks.length - 1; i >= 0; i -= 1) {
+        const sectionId = navLinks[i].href.replace('#', '');
+        const section = document.getElementById(sectionId);
+        if (section && window.scrollY >= section.offsetTop - 220) {
+          setActive(sectionId);
           break;
         }
       }
     };
+
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        padding: scrolled ? '12px 24px' : '20px 24px',
-        background: scrolled ? 'rgba(10, 10, 10, 0.8)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.05)' : '1px solid transparent',
-      }}
+      className={`portfolio-nav ${scrolled ? 'portfolio-nav-scrolled' : ''}`}
+      aria-label="Primary navigation"
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <a href="#" style={{ textDecoration: 'none', fontSize: '1.6rem', fontWeight: '800' }}>
-          <span style={{ color: '#f59e0b' }}>A</span>
-          <span style={{ color: '#fde68a' }}>R</span>
-          <span style={{ color: '#f59e0b' }}>.</span>
+      <div className="portfolio-nav-inner">
+        <a className="brand-mark" href="#top" aria-label="Abdul Rehman home">
+          <Image src="/ar-logo-transparent.png" alt="" width={44} height={44} priority />
+          <span>
+            <strong>Abdul Rehman</strong>
+            <small>Full Stack Developer</small>
+          </span>
         </a>
 
-        {/* Desktop Links */}
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}
-          className="hidden-mobile"
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              style={{
-                textDecoration: 'none',
-                color: active === link.href.replace('#', '') ? '#f59e0b' : '#9ca3af',
-                fontSize: '0.875rem',
-                fontWeight: '500',
-                padding: '8px 16px',
-                borderRadius: '9999px',
-                background: active === link.href.replace('#', '') ? 'rgba(245, 158, 11, 0.1)' : 'transparent',
-                letterSpacing: '0.02em',
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
+        <div className="desktop-links">
+          {navLinks.map((link) => {
+            const isActive = active === link.href.replace('#', '');
+            return (
+              <a key={link.label} className={isActive ? 'active' : ''} href={link.href}>
+                {link.label}
+              </a>
+            );
+          })}
         </div>
 
-        {/* Mobile Menu Button */}
+        <a className="nav-resume" href="/resume-abdul-rehman.pdf" target="_blank" rel="noreferrer">
+          Resume
+        </a>
+
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="show-mobile"
-          style={{
-            display: 'none',
-            background: 'transparent',
-            border: 'none',
-            cursor: 'pointer',
-            flexDirection: 'column',
-            gap: '5px',
-            padding: '8px',
-          }}
+          className="mobile-menu-button"
+          type="button"
+          onClick={() => setMenuOpen((value) => !value)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={menuOpen}
         >
-          <span style={{ display: 'block', width: '24px', height: '2px', background: '#f59e0b', borderRadius: '2px', transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none' }}></span>
-          <span style={{ display: 'block', width: '24px', height: '2px', background: '#f59e0b', borderRadius: '2px', opacity: menuOpen ? 0 : 1 }}></span>
-          <span style={{ display: 'block', width: '24px', height: '2px', background: '#f59e0b', borderRadius: '2px', transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }}></span>
+          <span />
+          <span />
+          <span />
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{
-          marginTop: '16px',
-          padding: '16px',
-          background: 'rgba(10, 10, 10, 0.95)',
-          backdropFilter: 'blur(20px)',
-          borderRadius: '16px',
-          border: '1px solid rgba(255,255,255,0.05)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '8px',
-        }}>
+        <div className="mobile-menu">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                textDecoration: 'none',
-                color: active === link.href.replace('#', '') ? '#f59e0b' : '#9ca3af',
-                fontSize: '1rem',
-                padding: '12px 16px',
-                borderRadius: '12px',
-                background: active === link.href.replace('#', '') ? 'rgba(245, 158, 11, 0.1)' : 'transparent',
-              }}
-            >
+            <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)}>
               {link.label}
             </a>
           ))}
+          <a href="/resume-abdul-rehman.pdf" target="_blank" rel="noreferrer">
+            Download Resume
+          </a>
         </div>
       )}
 
-      <style>{`
-        @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-          .show-mobile { display: flex !important; }
+      <style jsx>{`
+        .portfolio-nav {
+          position: fixed;
+          inset: 0 0 auto;
+          z-index: 50;
+          padding: 18px 24px;
+          transition: background 180ms ease, border-color 180ms ease, padding 180ms ease;
+        }
+
+        .portfolio-nav-scrolled {
+          padding-block: 10px;
+          background: rgba(7, 8, 13, 0.86);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(18px);
+        }
+
+        .portfolio-nav-inner {
+          display: grid;
+          grid-template-columns: auto 1fr auto;
+          gap: 18px;
+          align-items: center;
+          width: min(1160px, 100%);
+          margin: 0 auto;
+        }
+
+        .brand-mark {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          min-width: 0;
+          color: #ffffff;
+          text-decoration: none;
+        }
+
+        .brand-mark img {
+          width: 42px;
+          height: 42px;
+          border-radius: 8px;
+          object-fit: contain;
+          background: transparent;
+        }
+
+        .brand-mark span {
+          display: grid;
+          gap: 1px;
+        }
+
+        .brand-mark strong {
+          font-size: 0.96rem;
+          line-height: 1.1;
+        }
+
+        .brand-mark small {
+          color: #9aa6b6;
+          font-size: 0.72rem;
+        }
+
+        .desktop-links {
+          justify-self: center;
+          display: flex;
+          gap: 4px;
+          align-items: center;
+          padding: 6px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.04);
+        }
+
+        .desktop-links a,
+        .nav-resume,
+        .mobile-menu a {
+          color: #cbd5e1;
+          text-decoration: none;
+          font-size: 0.84rem;
+          font-weight: 750;
+        }
+
+        .desktop-links a {
+          border-radius: 6px;
+          padding: 8px 10px;
+        }
+
+        .desktop-links a:hover,
+        .desktop-links a.active {
+          background: rgba(255, 103, 15, 0.14);
+          color: #ff8a3d;
+        }
+
+        .nav-resume {
+          justify-self: end;
+          border: 1px solid rgba(255, 103, 15, 0.65);
+          border-radius: 8px;
+          padding: 10px 14px;
+          color: #ffffff;
+        }
+
+        .mobile-menu-button {
+          display: none;
+          width: 42px;
+          height: 42px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 8px;
+          background: rgba(255, 255, 255, 0.055);
+          padding: 10px;
+        }
+
+        .mobile-menu-button span {
+          display: block;
+          width: 100%;
+          height: 2px;
+          margin: 5px 0;
+          border-radius: 999px;
+          background: #ffffff;
+        }
+
+        .mobile-menu {
+          width: min(1160px, calc(100% - 48px));
+          margin: 12px auto 0;
+          display: grid;
+          gap: 4px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 8px;
+          background: rgba(7, 8, 13, 0.96);
+          padding: 8px;
+          backdrop-filter: blur(18px);
+        }
+
+        .mobile-menu a {
+          border-radius: 6px;
+          padding: 12px;
+        }
+
+        .mobile-menu a:hover {
+          background: rgba(255, 255, 255, 0.055);
+        }
+
+        @media (max-width: 960px) {
+          .portfolio-nav-inner {
+            grid-template-columns: 1fr auto;
+          }
+
+          .desktop-links,
+          .nav-resume {
+            display: none;
+          }
+
+          .mobile-menu-button {
+            display: block;
+          }
+        }
+
+        @media (max-width: 520px) {
+          .portfolio-nav {
+            padding-inline: 14px;
+          }
+
+          .brand-mark small {
+            display: none;
+          }
+
+          .mobile-menu {
+            width: calc(100% - 28px);
+          }
         }
       `}</style>
     </nav>
