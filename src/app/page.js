@@ -177,21 +177,24 @@ const modalData = {
   },
   ascency: {
     title: 'Ascency - Agency Landing Page',
-    hasVideo: false,
+    hasVideo: true,
+    videoSrc: '/videos/ascency-demo.mp4',
     desc: 'Premium marketing and agency landing page template. Conversion-focused layout with smooth GSAP animations, SEO-optimized structure, and a customizable design system.',
     features: ['Modern conversion-focused layout', 'Smooth GSAP scroll animations and interactions', 'SEO-optimized HTML structure', 'Customizable colors, typography, and content', 'Cross-browser compatible', 'Performance-optimized structure', 'Responsive across all devices'],
     stack: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
   },
   stanza: {
     title: 'Stanza - Minimal Landing Page',
-    hasVideo: false,
+    hasVideo: true,
+    videoSrc: '/videos/stanza-demo.mp4',
     desc: 'Minimal landing page template focused on typography, spacing, and elegant visuals. Built for personal portfolios, creative projects, and niche product showcases.',
     features: ['Minimal typography-driven design', 'Responsive across mobile, tablet, and desktop', 'Lightweight and fast-loading', 'Reusable section components', 'Smooth transitions and subtle interactions'],
     stack: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
   },
   fundify: {
     title: 'Fundify - Agency Landing Page',
-    hasVideo: false,
+    hasVideo: true,
+    videoSrc: '/videos/fundify-demo.mp4',
     desc: 'Bold, high-impact marketing agency landing page template with dynamic animations and a structured design system for creative studios and growth-focused service providers.',
     features: ['Bold modern UI', 'Dynamic animations and smooth interactions', 'Structured customizable design system', 'Responsive from mobile to desktop', 'Fast loading and SEO optimized', 'Built for agencies and service providers'],
     stack: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
@@ -554,6 +557,12 @@ export default function Home() {
                     <span className="card-num">{number}</span>
                     <span className="card-arrow">-&gt;</span>
                   </div>
+                  {modalData[key].hasVideo && (
+                    <div className="video-badge">
+                      <span className="pulse-dot" />
+                      Video Available
+                    </div>
+                  )}
                   <span className="card-badge badge-des">{badge}</span>
                   <h3 className="card-name">{title}</h3>
                   <p className="card-desc">{desc}</p>
