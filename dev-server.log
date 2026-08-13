@@ -1,0 +1,22 @@
+
+> abdulrehmang12.github.io@0.1.0 dev
+> next dev --port 3000
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.35.140:3000
+
+✓ Starting...
+Creating turbopack project {
+  dir: 'D:\\Work\\Github Projects\\abdulrehmang12.github.io',
+  testMode: true
+}
+✓ Ready in 700ms
+ GET / 200 in 919ms (compile: 740ms, render: 179ms)
+ GET / 200 in 94ms (compile: 7ms, render: 86ms)
+ GET / 200 in 98ms (compile: 6ms, render: 92ms)
+ GET / 200 in 106ms (compile: 6ms, render: 100ms)
+ GET / 200 in 304ms (compile: 109ms, render: 194ms)
+ GET / 200 in 90ms (compile: 5ms, render: 85ms)
+✓ Compiled in 1798ms
+ GET / 200 in 102ms (compile: 29ms, render: 73ms)
